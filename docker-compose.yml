@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${DB_USER:-ws}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-ws}
+      POSTGRES_DB: ${DB_NAME:-ws_messenger}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    environment:
+      APP_ENV: ${APP_ENV:-local}
+      APP_HOST: ${APP_HOST:-0.0.0.0}
+      APP_PORT: ${APP_PORT:-8080}
+      APP_LOG_LEVEL: ${APP_LOG_LEVEL:-info}
+      DB_HOST: ${DB_HOST:-postgres}
+      DB_PORT: ${DB_PORT:-5432}
+      DB_USER: ${DB_USER:-ws}
+      DB_PASSWORD: ${DB_PASSWORD:-ws}
+      DB_NAME: ${DB_NAME:-ws_messenger}
+      DB_SSLMODE: ${DB_SSLMODE:-disable}
+      JWT_SECRET: ${JWT_SECRET:-change_me}
+      JWT_TTL_MINUTES: ${JWT_TTL_MINUTES:-60}
+      CORS_ORIGINS: ${CORS_ORIGINS:-*}
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
