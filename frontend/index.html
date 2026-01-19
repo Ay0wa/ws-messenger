@@ -1,0 +1,110 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ws-messenger demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-orb orb-a"></div>
+  <div class="bg-orb orb-b"></div>
+  <div class="bg-grid"></div>
+
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">demo client</div>
+      <h1>ws-messenger</h1>
+    </div>
+    <div class="status" id="status">disconnected</div>
+  </header>
+
+  <main class="layout">
+    <section class="panel" data-reveal>
+      <h2>Connection</h2>
+      <label class="field">
+        <span>API base URL</span>
+        <input id="baseUrl" placeholder="http://localhost:8080" />
+      </label>
+      <button id="saveBase">Save</button>
+
+      <div class="divider"></div>
+
+      <h2>Auth</h2>
+      <div class="auth-grid">
+        <div>
+          <h3>Register</h3>
+          <label class="field">
+            <span>Email</span>
+            <input id="regEmail" type="email" />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input id="regPassword" type="password" />
+          </label>
+          <label class="field">
+            <span>Display name</span>
+            <input id="regDisplay" />
+          </label>
+          <button id="registerBtn">Register</button>
+        </div>
+        <div>
+          <h3>Login</h3>
+          <label class="field">
+            <span>Email</span>
+            <input id="loginEmail" type="email" />
+          </label>
+          <label class="field">
+            <span>Password</span>
+            <input id="loginPassword" type="password" />
+          </label>
+          <button id="loginBtn">Login</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <h2>Chats</h2>
+      <div class="row">
+        <label class="field">
+          <span>New chat name</span>
+          <input id="chatName" />
+        </label>
+        <button id="createChat">Create</button>
+      </div>
+      <div class="row">
+        <label class="field">
+          <span>Invite code</span>
+          <input id="inviteCode" />
+        </label>
+        <button id="joinChat">Join</button>
+      </div>
+      <div id="chatList" class="list"></div>
+    </section>
+
+    <section class="panel wide" data-reveal>
+      <div class="chat-head">
+        <div>
+          <h2 id="chatTitle">No chat selected</h2>
+          <div class="meta" id="chatMeta">Pick a chat to load messages.</div>
+        </div>
+        <button id="disconnectWs" class="ghost">Disconnect WS</button>
+      </div>
+
+      <div id="messages" class="messages"></div>
+
+      <form id="composer" class="composer">
+        <input id="messageInput" placeholder="Type a message..." autocomplete="off" />
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">Frontend demo for ws-messenger API.</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

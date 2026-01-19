@@ -1,0 +1,243 @@
+﻿:root {
+  --bg: #0f0f14;
+  --panel: #171722;
+  --panel-2: #1f1f2d;
+  --accent: #ff9f1c;
+  --accent-2: #2ec4b6;
+  --text: #f5f3ef;
+  --muted: #b6b0a6;
+  --danger: #ff5d5d;
+  --shadow: rgba(0, 0, 0, 0.35);
+  --mono: "IBM Plex Mono", monospace;
+  --sans: "Space Grotesk", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--sans);
+  color: var(--text);
+  background: radial-gradient(circle at top, #1b1b2e 0%, #0f0f14 45%, #0a0a0f 100%);
+  overflow-x: hidden;
+}
+
+.bg-orb {
+  position: fixed;
+  width: 40vw;
+  height: 40vw;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.25;
+  z-index: -2;
+}
+
+.orb-a {
+  background: #ff9f1c;
+  top: -15vw;
+  left: -10vw;
+}
+
+.orb-b {
+  background: #2ec4b6;
+  bottom: -20vw;
+  right: -15vw;
+}
+
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(circle at 20% 10%, black 40%, transparent 80%);
+  z-index: -1;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 12px;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+h1 { margin: 8px 0 0; font-size: 36px; }
+
+.status {
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) 1fr;
+  gap: 24px;
+  padding: 24px 32px 32px;
+}
+
+.panel {
+  background: linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 20px 60px var(--shadow);
+  padding: 20px;
+  border-radius: 18px;
+  backdrop-filter: blur(6px);
+}
+
+.panel.wide {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+}
+
+h2 { margin-top: 0; }
+
+h3 { margin-bottom: 8px; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: var(--panel);
+  color: var(--text);
+  font-family: var(--mono);
+}
+
+button {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: var(--accent);
+  color: #1a1200;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover { transform: translateY(-1px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+button.ghost {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--text);
+}
+
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 16px 0;
+}
+
+.auth-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: end;
+  margin-bottom: 10px;
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+  max-height: 260px;
+  overflow: auto;
+}
+
+.chat-card {
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--panel-2);
+  border: 1px solid rgba(255,255,255,0.08);
+  cursor: pointer;
+  transition: border 0.2s ease;
+}
+
+.chat-card.active { border-color: var(--accent-2); }
+
+.meta { font-size: 12px; color: var(--muted); }
+
+.messages {
+  flex: 1;
+  overflow: auto;
+  display: grid;
+  gap: 12px;
+  padding: 8px;
+}
+
+.message {
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--panel-2);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.message.self { border-color: var(--accent); }
+
+.message .meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.composer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.footer {
+  padding: 16px 32px 30px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: reveal 0.6s ease forwards;
+}
+
+[data-reveal]:nth-child(2) { animation-delay: 0.1s; }
+
+@keyframes reveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .panel.wide {
+    height: auto;
+    min-height: 60vh;
+  }
+}

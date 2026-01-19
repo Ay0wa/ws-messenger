@@ -47,7 +47,7 @@ func RequireAuth(authSvc *auth.Service) func(http.Handler) http.Handler {
 func bearerToken(r *http.Request) string {
 	header := r.Header.Get("Authorization")
 	if header == "" {
-		return ""
+		return r.URL.Query().Get("token")
 	}
 	parts := strings.SplitN(header, " ", 2)
 	if len(parts) != 2 || !strings.EqualFold(parts[0], "Bearer") {
